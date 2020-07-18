@@ -11,3 +11,4 @@ Lofter图片导出工具。
 下载后的图片格式为jpeg。暂不清楚原图是其他格式的话会不会有兼容的问题（png测试初步通过），如有问题可尝试直接修改后缀。
 
 详见：
+https://rakokuko.lofter.com/post/3119a879_1c9fcaa94
