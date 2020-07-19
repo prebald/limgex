@@ -3,6 +3,7 @@
 #   Not applicable for images embeded in text blog entries (those with <img> tags)
 #   1.0.1 using built-in urllib.request module instead of requests
 #   1.0.15 Python2.7 compatible ver
+#   1.0.17 added error log
 
 import os
 import re
@@ -48,9 +49,17 @@ def main():
                             print("downloaded")
 
                 except:
-                    raise
-#                    print("shit happened!")
-#                    pass
+                    print("shit happened!")
+                    err.append(links[0])
+                    err_count += 1
+                    pass
+
+    if err_count > 0:
+     print ("\n{} Error(s) occured. \nFind failed entries in log.txt".format(err_count))
+     log = "\n".join(err)
+     with open("log.txt", "w") as shame:
+         shame.write(log)
+
 
 
 def download_img(url, num):
