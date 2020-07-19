@@ -39,13 +39,13 @@ def main():
                         download_img(entry["raw"], count)
                         print("downloaded")
 
-                    except TypeError:
+                    except (TypeError, ValueError):
                         for item in entry:
                             count += 1
                             print(item["raw"])
                             download_img(item["raw"], count)
                             print("downloaded")
-
+                            
                 except:
                     print("shit happened!")
                     pass
