@@ -43,7 +43,7 @@ def main():
                         download_img(entry["raw"], count)
                         print("downloaded")
 
-                    except (TypeError, ValueError):
+                    except:
                         for item in entry:
                             count += 1
                             print(item["raw"])
@@ -58,7 +58,7 @@ def main():
 
     if err_count > 0:
      print ("\n{} Error(s) occured. \nFind failed entries in log.txt".format(err_count))
-     log = "\n".join(err)
+     log = "\n\n".join(err)
      with open("log.txt", "w") as shame:
          shame.write(log)
 
