@@ -2,6 +2,7 @@
 #   Extracts img data from lofter exported xml file.
 #   Not applicable for images embeded in text blog entries (those with <img> tags)
 #   1.0.1 (using urllib.request module instead of requests)
+#   ?minor fix, added error log
 
 import os
 import re
@@ -17,6 +18,8 @@ getattr(ssl, '_create_unverified_context', None)):
 
 def main():
     count = 0
+    err = []
+    err_count = 0
     for file in os.listdir():
         if not file.endswith(".xml"):
             continue
@@ -39,7 +42,7 @@ def main():
                         download_img(entry["raw"], count)
                         print("downloaded")
 
-                    except (TypeError, ValueError):
+                    except:
                         for item in entry:
                             count += 1
                             print(item["raw"])
@@ -48,8 +51,15 @@ def main():
                             
                 except:
                     print("shit happened!")
+                    err.append(links[0])
+                    err_count += 1
                     pass
-
+                
+    if err_count > 0:
+     print ("\n{} Error(s) occured. \nFind failed entries in log.txt".format(err_count))
+     log = "\n\n".join(err)
+     with open("log.txt", "w") as shame:
+         shame.write(log)
 
 def download_img(url, num):
     f_name = "img_" + str(num) + ".jpg"
